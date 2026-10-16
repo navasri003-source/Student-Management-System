@@ -14,10 +14,7 @@ int count = 0;
 
 void loadStudents() {
     ifstream file("students.txt");
-    count = 0;
-
-    while (count < 100 &&
-           file >> s[count].id) {
+    while (count < 100 && file >> s[count].id) {
         file.ignore();
         getline(file, s[count].name);
         getline(file, s[count].course);
@@ -30,7 +27,6 @@ void loadStudents() {
 
 void saveStudents() {
     ofstream file("students.txt");
-
     for (int i = 0; i < count; i++) {
         file << s[i].id << '\n';
         file << s[i].name << '\n';
@@ -41,7 +37,7 @@ void saveStudents() {
 }
 
 void addStudent() {
-    if (count == 100) {
+    if (count >= 100) {
         cout << "Student limit reached!\n";
         return;
     }
@@ -62,10 +58,8 @@ void addStudent() {
 
     cout << "Enter Name: ";
     getline(cin, s[count].name);
-
     cout << "Enter Course: ";
     getline(cin, s[count].course);
-
     cout << "Enter Marks: ";
     cin >> s[count].marks;
 
@@ -101,7 +95,6 @@ void searchStudent() {
             return;
         }
     }
-
     cout << "Student not found!\n";
 }
 
@@ -121,7 +114,6 @@ void deleteStudent() {
             return;
         }
     }
-
     cout << "Student not found!\n";
 }
 
