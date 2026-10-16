@@ -23,4 +23,4 @@ A simple Student Management System developed using C++.
 3. Paste the code and click Run.
 
 ## Note
-Student details are stored temporarily while the program is running.
+Student details are saved in a file named `students.txt` when the program runs in a folder that supports file storage.
