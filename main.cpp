@@ -14,6 +14,8 @@ int count = 0;
 
 void loadStudents() {
     ifstream file("students.txt");
+    count = 0;
+
     while (count < 100 && file >> s[count].id) {
         file.ignore();
         getline(file, s[count].name);
@@ -22,17 +24,20 @@ void loadStudents() {
         file.ignore();
         count++;
     }
+
     file.close();
 }
 
 void saveStudents() {
     ofstream file("students.txt");
+
     for (int i = 0; i < count; i++) {
         file << s[i].id << '\n';
         file << s[i].name << '\n';
         file << s[i].course << '\n';
         file << s[i].marks << '\n';
     }
+
     file.close();
 }
 
@@ -58,13 +63,16 @@ void addStudent() {
 
     cout << "Enter Name: ";
     getline(cin, s[count].name);
+
     cout << "Enter Course: ";
     getline(cin, s[count].course);
+
     cout << "Enter Marks: ";
     cin >> s[count].marks;
 
     count++;
     saveStudents();
+
     cout << "Student added successfully!\n";
 }
 
@@ -95,6 +103,7 @@ void searchStudent() {
             return;
         }
     }
+
     cout << "Student not found!\n";
 }
 
@@ -105,8 +114,9 @@ void deleteStudent() {
 
     for (int i = 0; i < count; i++) {
         if (s[i].id == id) {
-            for (int j = i; j < count - 1; j++)
+            for (int j = i; j < count - 1; j++) {
                 s[j] = s[j + 1];
+            }
 
             count--;
             saveStudents();
@@ -114,6 +124,7 @@ void deleteStudent() {
             return;
         }
     }
+
     cout << "Student not found!\n";
 }
 
@@ -121,6 +132,7 @@ int main() {
     loadStudents();
 
     int choice;
+
     do {
         cout << "\n--- Student Management System ---\n";
         cout << "1. Add Student\n";
